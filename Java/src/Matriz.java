@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.ArrayList;
 import java.util.Random;
 
 public class Matriz 
@@ -32,7 +31,7 @@ public class Matriz
             matriz[i] = 100000 + random.nextInt(900000);
         }
         
-        try (FileWriter fileWriter = new FileWriter(getPath("matrices/" + file + ".txt"))) {
+        try (FileWriter fileWriter = new FileWriter(getPath("src/matrices/" + file + ".txt"))) {
             for (int i = 0; i < size; i++) {
                 StringBuilder rowBuilder = new StringBuilder();
                 for (int j = 0; j < size; j++) {
@@ -53,12 +52,12 @@ public class Matriz
         List<String> lines = new ArrayList<>();
         
         try (BufferedReader reader = new BufferedReader(new FileReader(getPath("src/matrices/" + file + ".txt")))) {
-            System.out.println("Leyendo archivo...");
+            
             String line;
             while ((line = reader.readLine()) != null) {
                 lines.add(line);
             }
-            System.out.println("¡HECHO!\n");
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
