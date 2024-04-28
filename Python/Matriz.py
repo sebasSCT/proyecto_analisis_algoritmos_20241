@@ -2,13 +2,20 @@ import random
 
 def generar_matriz(size, nombre):
   
-  matriz = [random.randint(100000, 999999) for _ in range(size * size)]
+  # matriz = [random.randint(100000, 999999) for _ in range(size * size)]
+
+  matriz = [0] * size * size  # Initialize matrix with zeros
+
+  for i in range(size * size):
+      x = 100000 + i % 900000  # Generate values from 100000 to 999999 cyclically
+      matriz[i] = x
+
+  print(f"Creando: {size}")
 
   with open(f"matrices/{nombre}.txt", "w") as file:
     for i in range(size):
       row_data = " ".join(str(matriz[i * size + j]) for j in range(size))  
       file.write(row_data + " \n")
-      print(f"Creando: {i+1}/{size}")
   print("DONE!\n")
 
 def cargar_matriz(nombre):

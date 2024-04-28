@@ -24,23 +24,30 @@ public class Matriz
 
     private static void generar (int size, String file)
     {
-        Random random = new Random();
+        // Random random = new Random();
         int[] matriz = new int[size * size];
         
-        for (int i = 0; i < size * size; i++) {
-            matriz[i] = 100000 + random.nextInt(900000);
+        for (int i = 0, x = 100000; i < size * size; i++, x++) 
+        {
+            if (x >= 999999)
+            {
+                x = 100000;
+            }
+            matriz[i] = x;
+            // matriz[i] = 100000 + random.nextInt(900000);
         }
         
-        try (FileWriter fileWriter = new FileWriter(getPath("src/matrices/" + file + ".txt"))) {
+        try (FileWriter fileWriter = new FileWriter(getPath("matrices/" + file + ".txt"))) {
+            System.out.println("Creando: " + size);
             for (int i = 0; i < size; i++) {
                 StringBuilder rowBuilder = new StringBuilder();
                 for (int j = 0; j < size; j++) {
                     rowBuilder.append(matriz[i * size + j]).append(" ");
                 }
                 fileWriter.write(rowBuilder.toString().trim() + "\n");
-                System.out.println("Creando: " + (i + 1) + "/" + size);
+                // System.out.println("Creando: " + (i + 1) + "/" + size);
             }
-            System.out.println("¡HECHO!\n");
+            System.out.println("HECHO!\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
