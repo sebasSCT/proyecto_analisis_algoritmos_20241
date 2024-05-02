@@ -1,0 +1,11 @@
+(CASO) ;
+(ALGORITMO) , (TIEMPO EN SEGUNDOS) ;
+...
+>
+
+(CASO) ;
+(ALGORITMO) , (TIEMPO EN SEGUNDOS) ;
+...
+> 
+
+...

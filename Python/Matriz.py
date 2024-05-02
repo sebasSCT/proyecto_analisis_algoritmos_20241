@@ -20,22 +20,22 @@ def generar_matriz(size, nombre):
 
 def cargar_matriz(nombre):
  
-  print("Reading file...")
+  #print("Reading file...")
   with open(f"matrices/{nombre}.txt", "r") as file:
     lines = file.readlines()
 
   matriz = [[int(value) for value in line.strip().split()] for line in lines]
-  print("DONE!\n")
+  #print("DONE!\n")
   return matriz
 
-
+"""
 # Se generan las matrices n*n segun los casos de prueba
 casos = [100, 200, 400, 800, 1000, 2000, 3000, 4000]
 
 for i in casos:
     generar_matriz(i, "matriz_" + str(i))
 
-"""
+
 main
 matriz = cargar_matriz("matriz_1")
 

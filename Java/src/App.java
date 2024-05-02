@@ -12,8 +12,9 @@ public class App
 
     public static void main(String[] args) 
     {
-        int[] casos = {100, 200, 400, 800, 1000, 2000, 3000, 4000};
-        String[] algoritmos = {"1. NaivStandard", "2. NaivOnArray", "3. NaivKahan", "4. NaivLoopUnrollingTwo", "5. NaivLoopUnrollingThree", "6. NaivLoopUnrollingFour", "7. WinogradOriginal", "8. WinogradScaled", "9. StrassenNaiv", "10. StrassenWinograd", "11. SequentialBlock_III", "12. ParallelBlock_III", "13. SequentialBlock_IV", "14. ParallelBlock_IV", "15. SequentialBlock_V", "16. ParallelBlock_V"};
+        // int[] casos = {100, 200, 400, 800, 1000, 2000, 3000, 4000};
+            int[] casos = {100, 200};
+            String[] algoritmos = {"1. NaivStandard", "2. NaivOnArray", "3. NaivKahan", "4. NaivLoopUnrollingTwo", "5. NaivLoopUnrollingThree", "6. NaivLoopUnrollingFour", "7. WinogradOriginal", "8. WinogradScaled", "9. StrassenNaiv", "10. StrassenWinograd", "11. SequentialBlock_III", "12. ParallelBlock_III", "13. SequentialBlock_IV", "14. ParallelBlock_IV", "15. SequentialBlock_V", "16. ParallelBlock_V"};
         
         for (int caso : casos)
         {
@@ -36,7 +37,7 @@ public class App
 
                 double total_time = stop_time - start_time;
 
-                Guardar.guardar((i + 1) + "," + (double)(total_time / 1000000000) + "s;" , "src/matrices/resultados.txt");
+                Guardar.guardar(algoritmos[i].substring(3).trim() + "," + (double)(total_time / 1000000000) + ";", "src/matrices/resultados.txt");
 
                 System.out.println("\nTiempo: " + (double)(total_time / 1000000000) + "s\n\n");
             }
