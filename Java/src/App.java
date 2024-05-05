@@ -12,9 +12,13 @@ public class App
 
     public static void main(String[] args) 
     {
-        // int[] casos = {100, 200, 400, 800, 1000, 2000, 3000, 4000};
-            int[] casos = {100, 200};
-            String[] algoritmos = {"1. NaivStandard", "2. NaivOnArray", "3. NaivKahan", "4. NaivLoopUnrollingTwo", "5. NaivLoopUnrollingThree", "6. NaivLoopUnrollingFour", "7. WinogradOriginal", "8. WinogradScaled", "9. StrassenNaiv", "10. StrassenWinograd", "11. SequentialBlock_III", "12. ParallelBlock_III", "13. SequentialBlock_IV", "14. ParallelBlock_IV", "15. SequentialBlock_V", "16. ParallelBlock_V"};
+        
+            int[] casos = {64, 128, 256, 512, 1024, 2048, 4096, 8192};
+            String[] algoritmos = {"1. NaivOnArray", "2. NaivLoopUnrollingTwo", "3. NaivLoopUnrollingFour", 
+                                    "4. WinogradOriginal", "5. WinogradScaled", "6. StrassenNaiv", 
+                                    "7. StrassenWinograd", "8. Sequential block_III", "9. Parallel block_III", "10. Enhanced Parallel Block_III", 
+                                    "11. SequentialBlock_IV", "12. ParallelBlock_IV", "13. Enhanced Parallel Block_IV", 
+                                    "15. SequentialBlock_V", "16. ParallelBlock_V"};
         
         for (int caso : casos)
         {
@@ -23,7 +27,7 @@ public class App
             System.out.println("Caso: " + caso + " * " + caso + "\n");
             Guardar.guardar(caso + ";" , "src/matrices/resultados.txt");
 
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < 15; i++)
             {
                 double[][] result = new double[m.length][m.length];
 
@@ -54,71 +58,69 @@ public class App
         switch (opc)
         {
             case 1:
-                NaivStandard.run(m, m_, result, m.length, m.length, m.length);
+                NaivOnArray.run(m, m_, result, m.length, m.length, m.length);
                 break;
 
             case 2:
-                NaivOnArray.run(m, m_, result, m.length, m.length, m.length);
-                break;
-            
-            case 3:
-                NaivKaha.run(m, m_, result, m.length, m.length, m.length);
-                break;
-            
-            case 4:
                 NaivLoopUnrollingTwo.run(m, m_, result, m.length, m.length, m.length);
                 break;
             
-            case 5:
-                NaivLoopUnrollingThree.run(m, m_, result, m.length, m.length, m.length);
-                break;
-            
-            case 6:
+            case 3:
                 NaivLoopUnrollingFour.run(m, m_, result, m.length, m.length, m.length);
                 break;
             
-            case 7:
+            case 4:
                 WinogradOriginal.run(m, m_, result, m.length, m.length, m.length);
                 break;
             
-            case 8:
-                WinogradScaled.run(m, m_, result, m.length, m.length, m.length);
+            case 5:
+                WinogradScaled.run(m, m_, result, m.length, m.length, m.length);  
                 break;
             
-            case 9:
+            case 6:
                 StrassenNaiv.run(m, m_, result, m.length, m.length, m.length);
                 break;
             
-            case 10:
+            case 7:
                 StrassenWinograd.run(m, m_, result, m.length, m.length, m.length);
                 break;
             
-            case 11:
+            case 8:
                 SequentialBlock_III.run(m, m_, result);
                 break;
             
-            case 12:
+            case 9:
                 t = new Thread(new ParallelBlock_III(m,m_,result));
                 t.start();
                 break;
             
-            case 13:
+            case 10:
+                t = new Thread(new EnhancedParallelBlock_III(m,m_,result, m.length));
+                t.start();
+                break;
+            
+            case 11:
                 SequentialBlock_IV.run(m, m_, result);
                 break;
             
-            case 14:
+            case 12:
                 t = new Thread(new ParallelBlock_IV(m,m_,result));
                 t.start();
                 break;
             
-            case 15:
+            case 13:
+                t = new Thread(new EnhancedParallelBlock_IV(m,m_,result, m.length));
+                t.start();
+                break;
+            
+            case 14:
                 SequentialBlock_V.run(m, m_, result);
                 break;
             
-            case 16:
+            case 15:
                 t = new Thread(new ParallelBlock_V(m,m_,result));
                 t.start();
-                break;           
+                break;         
         }
 
     }

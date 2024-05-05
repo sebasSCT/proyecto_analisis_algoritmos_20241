@@ -13,7 +13,7 @@ public class Matriz
    
     public static void main(String[] args) 
     {
-        int[] casos = {100, 200, 400, 800, 1000, 2000, 3000, 4000};
+        int[] casos = {64, 128, 256, 512, 1024, 2048, 4096, 8192};
 
         for (int i : casos)
         {
