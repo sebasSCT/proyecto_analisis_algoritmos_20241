@@ -14,11 +14,12 @@ public class App
     {
         
             int[] casos = {64, 128, 256, 512, 1024, 2048, 4096, 8192};
+            // int[] casos = {8192};
             String[] algoritmos = {"1. NaivOnArray", "2. NaivLoopUnrollingTwo", "3. NaivLoopUnrollingFour", 
                                     "4. WinogradOriginal", "5. WinogradScaled", "6. StrassenNaiv", 
                                     "7. StrassenWinograd", "8. Sequential block_III", "9. Parallel block_III", "10. Enhanced Parallel Block_III", 
                                     "11. SequentialBlock_IV", "12. ParallelBlock_IV", "13. Enhanced Parallel Block_IV", 
-                                    "15. SequentialBlock_V", "16. ParallelBlock_V"};
+                                    "14. SequentialBlock_V", "15. ParallelBlock_V"};
         
         for (int caso : casos)
         {

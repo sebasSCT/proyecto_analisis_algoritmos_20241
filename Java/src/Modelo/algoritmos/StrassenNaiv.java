@@ -1,67 +1,95 @@
 package Modelo.algoritmos;
 
+/**
+ * Clase que implementa el algoritmo de Strassen para la multiplicación de matrices.
+ */
 public class StrassenNaiv 
 {
-
+    /**
+     * Método para multiplicar dos matrices utilizando el algoritmo de Strassen.
+     * 
+     * @param A La matriz de tamaño NxP.
+     * @param B La matriz de tamaño PxM.
+     * @param Result La matriz resultado de tamaño NxM.
+     * @param N El número de filas de la matriz A.
+     * @param P El número de columnas de la matriz A y filas de la matriz B.
+     * @param M El número de columnas de la matriz B.
+     */
     public static void run (double[][] A, double[][] B, double[][] Result, int N, int P, int M) {
-        int MaxSize, k, m, NewSize, i, j;
-        MaxSize = Math.max(N,P);
+        // Se calcula el tamaño máximo entre N, P y M
+        int MaxSize = Math.max(N,P);
         MaxSize = Math.max(MaxSize,M);
 
-        if ( MaxSize < 16)
-        {
+        // Si el tamaño máximo es menor que 16, se ajusta a 16
+        if ( MaxSize < 16) {
             MaxSize = 16; 
         }
 
-        k = (int) Math.floor(Math.log(MaxSize)/Math.log(2)) - 4;
-        m = (int) Math.floor(MaxSize * Math.pow(2,-k)) + 1;
-        NewSize = m * (int) Math.pow(2,k);
+        // Se calcula k y m para ajustar el tamaño de las matrices
+        int k = (int) Math.floor(Math.log(MaxSize)/Math.log(2)) - 4;
+        int m = (int) Math.floor(MaxSize * Math.pow(2,-k)) + 1;
+        int NewSize = m * (int) Math.pow(2,k);
 
+        // Se crean nuevas matrices de tamaño NewSize
         double[][] NewA = new double[NewSize][NewSize];
         double[][] NewB = new double[NewSize][NewSize];
         double[][] AuxResult = new double[NewSize][NewSize];
     
-        for( i = 0; i < NewSize; i++)
-        {
+        for(int i = 0; i < NewSize; i++) {
             NewA[i] = new double[NewSize];
             NewB[i] = new double[NewSize];
             AuxResult[i] = new double[NewSize];
         }
 
-        for( i = 0; i < NewSize; i++){
-            for( j = 0; j < NewSize; j++){
+        // Se inicializan las nuevas matrices en 0
+        for(int i = 0; i < NewSize; i++) {
+            for(int j = 0; j < NewSize; j++) {
                 NewA[i][j] = 0.0;
                 NewB[i][j] = 0.0;
             }
         }
-        for( i = 0; i < N; i++){
-            for( j = 0; j < P; j++){
+        
+        // Se copian los elementos de A y B en las nuevas matrices
+        for(int i = 0; i < N; i++) {
+            for(int j = 0; j < P; j++) {
                 NewA[i][j] = A[i][j];
             }
         }
-        for( i = 0; i < P; i++){
-            for( j = 0; j < M; j++){
+        for(int i = 0; i < P; i++) {
+            for(int j = 0; j < M; j++) {
                 NewB[i][j] = B[i][j];
             }
         }
         
+        // Se realiza la multiplicación utilizando el algoritmo de Strassen
         StrassenNaivStep(NewA, NewB, AuxResult, NewSize, m);
         
-        for( i = 0; i < N; i++){
-            for( j = 0; j < M; j++){
+        // Se copian los elementos del resultado a la matriz Result
+        for(int i = 0; i < N; i++) {
+            for(int j = 0; j < M; j++) {
                 Result[i][j] = AuxResult[i][j];
             }
         }
     }
 
+    /**
+     * Método auxiliar que implementa el algoritmo de Strassen.
+     * 
+     * @param A La matriz de tamaño NxN.
+     * @param B La matriz de tamaño NxN.
+     * @param Result La matriz resultado de tamaño NxN.
+     * @param N El tamaño de las matrices.
+     * @param m El valor de m para ajustar el tamaño de las matrices.
+     */
     private static void StrassenNaivStep(double[][] A,double[][] B,double[][] Result,int N,int m)
     {
-        int i, j, NewSize;
+        int NewSize;
         
-        if( (N % 2 == 0) && (N > m) )
-        { 
+        // Si N es par y mayor que m, se divide en bloques más pequeños
+        if( (N % 2 == 0) && (N > m) ) { 
             NewSize = N / 2;
             
+            // Se crean submatrices para dividir A, B y el resultado
             double[][] A11 = new double[NewSize][NewSize];
             double[][] A12 = new double[NewSize][NewSize];
             double[][] A21 = new double[NewSize][NewSize];
@@ -84,8 +112,8 @@ public class StrassenNaiv
             double[][] Aux6 = new double[NewSize][NewSize];
             double[][] Aux7 = new double[NewSize][NewSize];
 
-            for( i = 0; i < NewSize; i++)
-            {
+            // Se inicializan las submatrices en 0
+            for(int i = 0; i < NewSize; i++) {
                 A11[i] = new double[NewSize];
                 A12[i] = new double[NewSize];
                 A21[i] = new double[NewSize];
@@ -109,63 +137,49 @@ public class StrassenNaiv
                 Aux7[i] = new double[NewSize];
             }
             
-            for( i = 0; i < NewSize; i++)
-            {
-                for( j = 0; j < NewSize; j++)
-                {
+            // Se copian los elementos de A y B en las submatrices
+            for(int i = 0; i < NewSize; i++) {
+                for(int j = 0; j < NewSize; j++) {
                     A11[i][j] = A[i][j];
                 }
             }
-            for( i = 0; i < NewSize; i++)
-            {
-            for( j = 0; j < NewSize; j++)
-                {
+            for(int i = 0; i < NewSize; i++) {
+                for(int j = 0; j < NewSize; j++) {
                     A12[i][j] = A[i][NewSize + j];
                 }
             }
-            for( i = 0; i < NewSize; i++)
-            {
-                for( j = 0; j < NewSize; j++)
-                {
+            for(int i = 0; i < NewSize; i++) {
+                for(int j = 0; j < NewSize; j++) {
                     A21[i][j] = A[NewSize + i][j];
                 }
             }
-            for( i = 0; i < NewSize; i++)
-            {
-                for( j = 0; j < NewSize; j++)
-                {
+            for(int i = 0; i < NewSize; i++) {
+                for(int j = 0; j < NewSize; j++) {
                     A22[i][j] = A[NewSize + i][NewSize + j];
                 }
             }
-            for( i = 0; i < NewSize; i++)
-            {
-                for( j = 0; j < NewSize; j++)
-                {
+            for(int i = 0; i < NewSize; i++) {
+                for(int j = 0; j < NewSize; j++) {
                     B11[i][j] = B[i][j];
                 }
             }
-            for( i = 0; i < NewSize; i++)
-            {
-                for( j = 0; j < NewSize; j++)
-                {
+            for(int i = 0; i < NewSize; i++) {
+                for(int j = 0; j < NewSize; j++) {
                     B12[i][j] = B[i][NewSize + j];
                 }
             }
-            for( i = 0; i < NewSize; i++)
-            {
-                for( j = 0; j < NewSize; j++)
-                {
+            for(int i = 0; i < NewSize; i++) {
+                for(int j = 0; j < NewSize; j++) {
                     B21[i][j] = B[NewSize + i][j];
                 }
             }
-            for( i = 0; i < NewSize; i++)
-            {
-                for( j = 0; j < NewSize; j++)
-                {
+            for(int i = 0; i < NewSize; i++) {
+                for(int j = 0; j < NewSize; j++) {
                     B22[i][j] = B[NewSize + i][NewSize + j];
                 }
             }
             
+            // Se realizan las operaciones necesarias para el algoritmo de Strassen
             Operaciones.Plus(A11, A22, Helper1, NewSize, NewSize);
             Operaciones.Plus(B11, B22, Helper2, NewSize, NewSize);
             StrassenNaivStep(Helper1, Helper2, Aux1, NewSize, m);
@@ -192,42 +206,32 @@ public class StrassenNaiv
             Operaciones.Minus(ResultPart22, Aux2, ResultPart22, NewSize, NewSize);
             Operaciones.Plus(ResultPart22, Aux6, ResultPart22, NewSize, NewSize);
             
-            for( i = 0; i < NewSize; i++)
-            {
-                for( j = 0; j < NewSize; j++)
-                {
+            // Se copian los resultados a la matriz Result
+            for(int i = 0; i < NewSize; i++) {
+                for(int j = 0; j < NewSize; j++) {
                     Result[i][j] = ResultPart11[i][j];
                 }
             }
-            for( i = 0; i < NewSize; i++)
-            {
-                for( j = 0; j < NewSize; j++)
-                {
+            for(int i = 0; i < NewSize; i++) {
+                for(int j = 0; j < NewSize; j++) {
                     Result[i][NewSize + j] = ResultPart12[i][j];
                 }
             }
-            for( i = 0; i < NewSize; i++)
-            {
-                for( j = 0; j < NewSize; j++)
-                {
+            for(int i = 0; i < NewSize; i++) {
+                for(int j = 0; j < NewSize; j++) {
                     Result[NewSize + i][j] = ResultPart21[i][j];
                 }
             }
-            for( i = 0; i < NewSize; i++)
-            {
-                for( j = 0; j < NewSize; j++)
-                {
+            for(int i = 0; i < NewSize; i++) {
+                for(int j = 0; j < NewSize; j++) {
                     Result[NewSize + i][NewSize + j] = ResultPart22[i][j];
                 }
             }
         }
 
-        else 
-        {
+        // Si N no cumple con las condiciones para el algoritmo de Strassen, se utiliza el algoritmo estándar
+        else {
             NaivStandard.run(A, B, Result, N, N, N);
-        }
-        
-    }
-
-    
+        }   
+    }  
 }

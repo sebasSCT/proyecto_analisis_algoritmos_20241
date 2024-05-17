@@ -37,7 +37,7 @@ public class Matriz
             // matriz[i] = 100000 + random.nextInt(900000);
         }
         
-        try (FileWriter fileWriter = new FileWriter(getPath("matrices/" + file + ".txt"))) {
+        try (FileWriter fileWriter = new FileWriter(getPath("src/matrices/" + file + ".txt"))) {
             System.out.println("Creando: " + size);
             for (int i = 0; i < size; i++) {
                 StringBuilder rowBuilder = new StringBuilder();

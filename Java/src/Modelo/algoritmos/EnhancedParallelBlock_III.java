@@ -2,7 +2,7 @@ package Modelo.algoritmos;
 
 public class EnhancedParallelBlock_III implements Runnable{
 
-    private static final int BLOCK_SIZE = 128/* Choose an appropriate block size */;  // Adjust based on matrix size and hardware
+    private static final int BLOCK_SIZE = 128;
     private double[][] A, B, C;
     private int size;
 
@@ -30,7 +30,6 @@ public class EnhancedParallelBlock_III implements Runnable{
             }
         }
 
-        // Second half of the matrix (optional for parallelization with additional threads)
         for (int i1 = size / 2; i1 < size; i1 += BLOCK_SIZE) {
             for (int j1 = 0; j1 < size; j1 += BLOCK_SIZE) {
                 for (int k1 = 0; k1 < size; k1 += BLOCK_SIZE) {
