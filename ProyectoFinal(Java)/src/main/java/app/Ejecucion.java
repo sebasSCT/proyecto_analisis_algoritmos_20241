@@ -1,20 +1,21 @@
+package app;
+
+import controller.AlgoritmosImp;
+import model.herramientas.Archivo;
 
 
-import Modelo.algoritmos.*;
-import Modelo.herramientas.Guardar;
-
-
-public class App
+public class Ejecucion
 {
 
     private static double start_time, stop_time;
     private static Thread t;
+    private static AlgoritmosImp algoritmos = new AlgoritmosImp();
 
     public static void main(String[] args) 
     {
         
             int[] casos = {64, 128, 256, 512, 1024, 2048, 4096, 8192};
-            // int[] casos = {8192};
+
             String[] algoritmos = {"1. NaivOnArray", "2. NaivLoopUnrollingTwo", "3. NaivLoopUnrollingFour", 
                                     "4. WinogradOriginal", "5. WinogradScaled", "6. StrassenNaiv", 
                                     "7. StrassenWinograd", "8. Sequential block_III", "9. Parallel block_III", "10. Enhanced Parallel Block_III", 
@@ -26,7 +27,7 @@ public class App
             double[][] m = Matriz.cargar_matriz("matriz_" + caso);
 
             System.out.println("Caso: " + caso + " * " + caso + "\n");
-            Guardar.guardar(caso + ";" , "src/matrices/resultados.txt");
+            Archivo.guardar(caso + ";" , "src/main/resources/resultados_Java.txt");
 
             for (int i = 0; i < 15; i++)
             {
@@ -42,12 +43,12 @@ public class App
 
                 double total_time = stop_time - start_time;
 
-                Guardar.guardar(algoritmos[i].substring(3).trim() + "," + (double)(total_time / 1000000000) + ";", "src/matrices/resultados.txt");
+                Archivo.guardar(algoritmos[i].substring(3).trim() + "," + (double)(total_time / 1000000000) + ";", "src/main/resources/resultados_Java.txt");
 
                 System.out.println("\nTiempo: " + (double)(total_time / 1000000000) + "s\n\n");
             }
 
-            Guardar.guardar(">" , "src/matrices/resultados.txt");
+            Archivo.guardar("\n" , "src/main/resources/resultados_Java.txt");
 
         }
 
@@ -59,69 +60,69 @@ public class App
         switch (opc)
         {
             case 1:
-                NaivOnArray.run(m, m_, result, m.length, m.length, m.length);
+                algoritmos.NaivOnArray(m, m_, result, m.length, m.length, m.length);
                 break;
 
             case 2:
-                NaivLoopUnrollingTwo.run(m, m_, result, m.length, m.length, m.length);
+                algoritmos.NaivLoopUnrollingTwo(m, m_, result, m.length, m.length, m.length);
                 break;
             
             case 3:
-                NaivLoopUnrollingFour.run(m, m_, result, m.length, m.length, m.length);
+                algoritmos.NaivLoopUnrollingFour(m, m_, result, m.length, m.length, m.length);
                 break;
             
             case 4:
-                WinogradOriginal.run(m, m_, result, m.length, m.length, m.length);
+                algoritmos.WinogradOriginal(m, m_, result, m.length, m.length, m.length);
                 break;
             
             case 5:
-                WinogradScaled.run(m, m_, result, m.length, m.length, m.length);  
+                algoritmos.WinogradScaled(m, m_, result, m.length, m.length, m.length);
                 break;
             
             case 6:
-                StrassenNaiv.run(m, m_, result, m.length, m.length, m.length);
+                algoritmos.StrassenNaiv(m, m_, result, m.length, m.length, m.length);
                 break;
             
             case 7:
-                StrassenWinograd.run(m, m_, result, m.length, m.length, m.length);
+                algoritmos.StrassenWinograd(m, m_, result, m.length, m.length, m.length);
                 break;
             
             case 8:
-                SequentialBlock_III.run(m, m_, result);
+                algoritmos.SequentialBlock_III(m, m_, result);
                 break;
             
             case 9:
-                t = new Thread(new ParallelBlock_III(m,m_,result));
+                t = new Thread(algoritmos.ParallelBlock_III(m, m_, result));
                 t.start();
                 break;
             
             case 10:
-                t = new Thread(new EnhancedParallelBlock_III(m,m_,result, m.length));
+                t = new Thread(algoritmos.EnhancedParallelBlock_III(m, m_, result, m.length));
                 t.start();
                 break;
             
             case 11:
-                SequentialBlock_IV.run(m, m_, result);
+                algoritmos.SequentialBlock_IV(m, m_, result);
                 break;
             
             case 12:
-                t = new Thread(new ParallelBlock_IV(m,m_,result));
+                t = new Thread(algoritmos.ParallelBlock_IV(m, m_, result));
                 t.start();
                 break;
             
             case 13:
-                t = new Thread(new EnhancedParallelBlock_IV(m,m_,result, m.length));
+                t = new Thread(algoritmos.EnhancedParallelBlock_IV(m, m_, result, m.length));
                 t.start();
                 break;
             
             case 14:
-                SequentialBlock_V.run(m, m_, result);
+                algoritmos.SequentialBlock_V(m, m_, result);
                 break;
             
             case 15:
-                t = new Thread(new ParallelBlock_V(m,m_,result));
+                t = new Thread(algoritmos.ParallelBlock_V(m, m_, result));
                 t.start();
-                break;         
+                break;
         }
 
     }

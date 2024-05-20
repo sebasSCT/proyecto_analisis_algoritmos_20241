@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Guardar 
+public class Archivo 
 {
     public static void guardar(String cadena, String rutaArchivo) 
     {
@@ -14,7 +14,8 @@ public class Guardar
         {
             File archivo = new File(getPath(rutaArchivo));
 
-            if (!archivo.exists()) {
+            if (!archivo.exists()) 
+            {
                 archivo.createNewFile();
             }
 

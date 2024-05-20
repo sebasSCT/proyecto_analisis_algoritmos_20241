@@ -1,4 +1,4 @@
-
+package app;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -37,7 +37,7 @@ public class Matriz
             // matriz[i] = 100000 + random.nextInt(900000);
         }
         
-        try (FileWriter fileWriter = new FileWriter(getPath("src/matrices/" + file + ".txt"))) {
+        try (FileWriter fileWriter = new FileWriter(getPath("src/main/resources/matrices/" + file + ".txt"))) {
             System.out.println("Creando: " + size);
             for (int i = 0; i < size; i++) {
                 StringBuilder rowBuilder = new StringBuilder();
@@ -58,7 +58,7 @@ public class Matriz
     {
         List<String> lines = new ArrayList<>();
         
-        try (BufferedReader reader = new BufferedReader(new FileReader(getPath("src/matrices/" + file + ".txt")))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(getPath("src/main/resources/matrices/" + file + ".txt")))) {
             
             String line;
             while ((line = reader.readLine()) != null) {

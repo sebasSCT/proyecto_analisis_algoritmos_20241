@@ -40,7 +40,7 @@ def ejecutar ():
 
             Resultados.guardar(algoritmos[i][3:].strip() + "," + str(total) + ";", ruta)
         
-        Resultados.guardar(">", ruta)
+        Resultados.guardar("\n", ruta)
 
 def ejecutar_algoritmos (indice, m, m_, result):
     match indice:
