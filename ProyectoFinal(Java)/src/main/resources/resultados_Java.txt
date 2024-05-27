@@ -125,4 +125,224 @@ SequentialBlock_IV,248.163611;
 ParallelBlock_IV,0.0133879;
 Enhanced Parallel Block_IV,0.0254593;
 SequentialBlock_V,7008.3914266;
-ParallelBlock_V,0.0095198;64;
+ParallelBlock_V,0.0095198;64;64;
+
+
+128;
+
+
+256;
+
+
+512;
+
+
+1024;
+
+
+2048;
+
+
+4096;
+
+
+8192;
+
+
+128;
+
+
+128;
+
+
+128;
+SequentialBlock_IV,0.0145311;
+
+
+2;
+SequentialBlock_IV,6.964E-4;
+
+
+2;
+SequentialBlock_IV,7.795E-4;
+
+
+2;
+Enhanced Parallel Block_III,0.005093;
+
+
+2;
+Enhanced Parallel Block_III,0.0059027;
+
+
+2;
+Enhanced Parallel Block_III,0.0144872;
+
+
+2;
+Enhanced Parallel Block_III,0.0151838;
+
+
+2;
+Enhanced Parallel Block_III,0.0148097;
+
+
+2;
+Enhanced Parallel Block_III,0.0078503;
+
+
+2;
+Enhanced Parallel Block_III,0.0225118;
+
+
+3;
+Enhanced Parallel Block_III,0.0065071;
+
+
+3;
+Enhanced Parallel Block_III,0.0186992;
+
+
+3;
+Enhanced Parallel Block_III,0.0086535;
+SequentialBlock_IV,7.505E-4;
+ParallelBlock_IV,7.837E-4;
+3;
+Enhanced Parallel Block_III,0.0086535;
+SequentialBlock_IV,6.586E-4;
+ParallelBlock_IV,7.822E-4;
+Enhanced Parallel Block_IV,0.0022466;
+SequentialBlock_V,7.754E-4;
+
+
+3;
+NaivOnArray,7.211E-4;
+NaivLoopUnrollingTwo,7.976E-4;
+NaivLoopUnrollingFour,7.555E-4;
+WinogradOriginal,7.462E-4;
+WinogradScaled,0.0210208;
+StrassenNaiv,0.0140116;
+StrassenWinograd,9.586E-4;
+Sequential block_III,0.0085483;
+Parallel block_III,0.0086057;
+Enhanced Parallel Block_III,0.0072271;
+SequentialBlock_IV,7.195E-4;
+ParallelBlock_IV,0.0092257;
+Enhanced Parallel Block_IV,0.0022598;
+SequentialBlock_V,7.43E-4;
+ParallelBlock_V,0.0097071;
+128;
+NaivOnArray,0.0127644;
+NaivLoopUnrollingTwo,0.0093054;
+NaivLoopUnrollingFour,0.0146665;
+WinogradOriginal,0.0127104;
+WinogradScaled,0.0078544;
+StrassenNaiv,0.0440785;
+StrassenWinograd,0.0211954;
+Sequential block_III,0.0146048;
+Parallel block_III,9.565E-4;
+Enhanced Parallel Block_III,0.0283879;
+SequentialBlock_IV,0.0592351;
+ParallelBlock_IV,0.0035628;
+Enhanced Parallel Block_IV,0.0337646;
+SequentialBlock_V,0.019324;
+ParallelBlock_V,9.052E-4;
+128;
+NaivOnArray,0.0121831;
+NaivLoopUnrollingTwo,0.0110859;
+NaivLoopUnrollingFour,0.0135491;
+WinogradOriginal,0.0095823;
+WinogradScaled,0.0076779;
+StrassenNaiv,0.0419549;
+StrassenWinograd,0.0202741;
+Sequential block_III,0.0139613;
+Parallel block_III,8.975E-4;
+Enhanced Parallel Block_III,0.0242799;
+SequentialBlock_IV,0.0141964;
+ParallelBlock_IV,9.092E-4;
+Enhanced Parallel Block_IV,0.0195353;
+SequentialBlock_V,0.0146939;
+ParallelBlock_V,7.895E-4;
+
+
+512;
+NaivOnArray,0.4541206;
+NaivLoopUnrollingTwo,0.5812609;
+NaivLoopUnrollingFour,0.5429439;
+WinogradOriginal,0.3808543;
+WinogradScaled,0.3260892;
+StrassenNaiv,0.8186748;
+StrassenWinograd,0.9428615;
+Sequential block_III,0.8434784;
+Parallel block_III,0.0011875;
+Enhanced Parallel Block_III,0.1756142;
+SequentialBlock_IV,0.1452707;
+ParallelBlock_IV,0.0013539;
+Enhanced Parallel Block_IV,0.1908678;
+SequentialBlock_V,0.5754108;
+ParallelBlock_V,8.163E-4;
+
+
+2048;
+1024;
+NaivOnArray,10.8913425;
+NaivLoopUnrollingTwo,8.9936624;
+NaivLoopUnrollingFour,8.4628684;
+WinogradOriginal,8.3576392;
+WinogradScaled,8.229707;
+StrassenNaiv,6.9680841;
+StrassenWinograd,4.5666467;
+Sequential block_III,7.3775766;
+Parallel block_III,0.0048375;
+Enhanced Parallel Block_III,1.1555608;
+SequentialBlock_IV,1.1467939;
+ParallelBlock_IV,0.0033336;
+Enhanced Parallel Block_IV,0.7125979;
+SequentialBlock_V,24.115773;
+ParallelBlock_V,0.0033962;
+
+
+1024;
+Parallel block_III,0.0111361;
+
+
+3;
+Parallel block_III,8.754E-4;
+
+
+3;
+Parallel block_III,0.0093141;
+
+
+3;
+Parallel block_III,0.0087412;
+
+
+3;
+Parallel block_III,0.0094709;
+
+
+3;
+Parallel block_III,0.0091427;
+
+
+3;
+Parallel block_III,0.0094072;
+
+
+3;
+Parallel block_III,8.428E-4;
+
+
+3;
+Parallel block_III,0.0104443;
+
+
+3;
+Parallel block_III,0.0091944;
+
+
+3;
+Parallel block_III,0.0096474;
+
+

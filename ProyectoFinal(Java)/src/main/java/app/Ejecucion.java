@@ -13,8 +13,9 @@ public class Ejecucion
 
     public static void main(String[] args) 
     {
-        
-            int[] casos = {64, 128, 256, 512, 1024, 2048, 4096, 8192};
+
+//            int[] casos = {64, 128, 256, 512, 1024, 2048, 4096, 8192};
+            int[] casos = {3};
 
             String[] algoritmos = {"1. NaivOnArray", "2. NaivLoopUnrollingTwo", "3. NaivLoopUnrollingFour", 
                                     "4. WinogradOriginal", "5. WinogradScaled", "6. StrassenNaiv", 
@@ -22,14 +23,14 @@ public class Ejecucion
                                     "11. SequentialBlock_IV", "12. ParallelBlock_IV", "13. Enhanced Parallel Block_IV", 
                                     "14. SequentialBlock_V", "15. ParallelBlock_V"};
         
-        for (int caso : casos)
-        {
+        for (int caso : casos) {
             double[][] m = Matriz.cargar_matriz("matriz_" + caso);
 
-            System.out.println("Caso: " + caso + " * " + caso + "\n");
-            Archivo.guardar(caso + ";" , "src/main/resources/resultados_Java.txt");
 
-            for (int i = 0; i < 15; i++)
+            System.out.println("Caso: " + caso + " * " + caso + "\n");
+            Archivo.guardar(caso + ";", "src/main/resources/resultados_Java.txt");
+
+            for (int i = 8; i < 9; i++)
             {
                 double[][] result = new double[m.length][m.length];
 
@@ -43,16 +44,14 @@ public class Ejecucion
 
                 double total_time = stop_time - start_time;
 
-                Archivo.guardar(algoritmos[i].substring(3).trim() + "," + (double)(total_time / 1000000000) + ";", "src/main/resources/resultados_Java.txt");
+                Archivo.guardar(algoritmos[i].substring(3).trim() + "," + (double) (total_time / 1000000000) + ";", "src/main/resources/resultados_Java.txt");
 
-                System.out.println("\nTiempo: " + (double)(total_time / 1000000000) + "s\n\n");
+                System.out.println("\nTiempo: " + (double) (total_time / 1000000000) + "s\n\n");
             }
 
-            Archivo.guardar("\n" , "src/main/resources/resultados_Java.txt");
+            Archivo.guardar("\n", "src/main/resources/resultados_Java.txt");
 
         }
-
-        
     }
     
     private static void metodo (int opc, double[][] m, double[][] m_, double[][] result)
@@ -97,8 +96,7 @@ public class Ejecucion
                 break;
             
             case 10:
-                t = new Thread(algoritmos.EnhancedParallelBlock_III(m, m_, result, m.length));
-                t.start();
+                algoritmos.EnhancedParallelBlock_III(result, m, m_, m.length);
                 break;
             
             case 11:
@@ -111,8 +109,7 @@ public class Ejecucion
                 break;
             
             case 13:
-                t = new Thread(algoritmos.EnhancedParallelBlock_IV(m, m_, result, m.length));
-                t.start();
+                algoritmos.EnhancedParallelBlock_IV(result, m, m_, m.length);
                 break;
             
             case 14:

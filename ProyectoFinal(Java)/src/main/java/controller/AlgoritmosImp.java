@@ -50,8 +50,8 @@ public class AlgoritmosImp implements AlgoritmosInt
     }
 
     @Override
-    public EnhancedParallelBlock_III EnhancedParallelBlock_III(double[][] A, double[][] B, double[][] C, int size) {
-        return new EnhancedParallelBlock_III(A, B, C, size);
+    public void EnhancedParallelBlock_III(double[][] A, double[][] B, double[][] C, int size) {
+        EnhancedParallelBlock_III.run(A, B, C, size);
     }
 
     @Override
@@ -65,8 +65,8 @@ public class AlgoritmosImp implements AlgoritmosInt
     }
 
     @Override
-    public EnhancedParallelBlock_IV EnhancedParallelBlock_IV(double[][] A, double[][] B, double[][] C, int size) {
-        return new EnhancedParallelBlock_IV(A,B,C,size);
+    public void EnhancedParallelBlock_IV(double[][] A, double[][] B, double[][] C, int size) {
+        EnhancedParallelBlock_IV.run(A,B,C,size);
     }
 
     @Override

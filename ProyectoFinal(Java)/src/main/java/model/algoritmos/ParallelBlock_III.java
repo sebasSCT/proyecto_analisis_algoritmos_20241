@@ -7,6 +7,7 @@ package model.algoritmos;
 public class ParallelBlock_III implements Runnable
 {
     double[][] A, B, C;
+    int size;
 
     /**
      * Constructor de la clase ParallelBlock_III.
@@ -20,6 +21,7 @@ public class ParallelBlock_III implements Runnable
         this.A = A;
         this.B = B;
         this.C = C;
+        this.size = A.length;
     }
 
     /**
@@ -27,23 +29,18 @@ public class ParallelBlock_III implements Runnable
      * Este método se ejecuta cuando se inicia un hilo con esta clase.
      */
     @Override
-    public void run() 
+    public void run()
     {
+
+        int bsize = determinarBlockSize(size);
+
         // Iterar sobre los bloques de la matriz C
-        for (int i1 = 0; i1 < A.length; i1 += B.length)
-        {
-            for (int j1 = 0; j1 < A.length; j1 += B.length)
-            {
-                for (int k1 = 0; k1 < A.length; k1 += B.length)
-                {
-                    // Iterar sobre los elementos de cada bloque
-                    for (int i = i1; i < i1 + B.length && i < A.length; i++)
-                    {
-                        for (int j = j1; j < j1 + B.length && j < A.length; j++)
-                        {
-                            for (int k = k1; k < k1 + B.length && k < A.length; k++)
-                            {
-                                // Calcular el producto de los elementos y acumular en el resultado
+        for ( int i1 = 0; i1 < size; i1 += bsize) {
+            for (int j1 = 0; j1 < size; j1 += bsize) {
+                for (int k1 = 0; k1 < size; k1 += bsize) {
+                    for (int i = i1; i < i1 + bsize && i < size; i++) {
+                        for (int j = j1; j < j1 + bsize && j < size; j++) {
+                            for (int k = k1; k < k1 + bsize && k < size; k++) {
                                 C[i][j] += A[i][k] * B[k][j];
                             }
                         }
@@ -51,5 +48,20 @@ public class ParallelBlock_III implements Runnable
                 }
             }
         }
+
+//        for (double[] a : C)
+//        {
+//            for (double b : a)
+//            {
+//                System.out.print(b + " ");
+//            }
+//            System.out.println();
+//        }
+
+
+    }
+
+    private static int determinarBlockSize(int size) {
+        return Math.max(1, size / 10);
     }
 }

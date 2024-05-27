@@ -30,10 +30,10 @@ def cargar_matriz(nombre):
 
 
 # Se generan las matrices n*n segun los casos de prueba
-#casos = [64, 128, 256, 512, 1024, 2048, 4096, 8192]
+casos = [64, 128, 256, 512, 1024, 2048, 4096, 8192]
 
-#for i in casos:
-#    generar_matriz(i, "matriz_" + str(i))
+for i in casos:
+    generar_matriz(i, "matriz_" + str(i))
 
 """"
 main
